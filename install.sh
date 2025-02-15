@@ -20,12 +20,6 @@ function check_command
     end
 end
 
-# Verifica se já está rodando o Fish
-if not status is-interactive
-    log_error "Este script deve ser executado interativamente no Fish shell"
-    exit 1
-end
-
 # Muda o shell padrão para Fish
 log_info "Configurando Fish como shell padrão..."
 if not grep -q (which fish) /etc/shells
