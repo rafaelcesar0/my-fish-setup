@@ -2,9 +2,6 @@
 
 This is the automation of my fish shell configurations and the technology I use in my daily life as soon as I install Linux.
 
-## Pre settings
-
-### Update Ubuntu
 ```sh
 sudo apt update && sudo apt upgrade -y
 ```
@@ -37,23 +34,55 @@ cat ~/.ssh/id_rsa.pub
 
 ## Installs
 
-### [Fish Shell](https://github.com/fish-shell/fish-shell) and [Oh-My-Fish](https://github.com/oh-my-fish/oh-my-fish)
-
 ```sh
 sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt update
-sudo apt install fish
-fish
+sudo apt install fish &&
+fish &&
+chsh -s (which fish) &&
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 ```
-
-### [Bass](https://github.com/edc/bass)
+Close terminal
 
 ```sh
 omf install bass
+
+curl -sS https://starship.rs/install.sh | sh
+
+mkdir -p ~/.config
+cp -f "$SCRIPT_DIR/config/starship.toml" ~/.config/
+
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --all
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
+mkdir -p ~/.config/fish
+cp -f "$SCRIPT_DIR/config/config.fish" ~/.config/fish/
+
+function nvm
+    bass source $HOME/.nvm/nvm.sh --no-use ';' nvm $argv
+end
+
+nvm install --lts
+nvm use --lts
+nvm alias default 'lts/*'
+npm update -g npm
+
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+
+sudo apt install -y unzip
+curl -fsSL https://bun.sh/install | bash
+
+fish_add_path $HOME/.local/bin $HOME/.nvm $HOME/.bun/bin
+
+echo "✓ Configuração concluída! Por favor, reinicie o terminal para aplicar as mudanças."
+
 ```
 
-## Download repository
+<!-- ## Download repository
 
 ### HTTPS
 
@@ -74,4 +103,4 @@ git clone git@github.com:rafaelcesar0/my-fish-setup.git
 cd "$(pwd)/my-fish-setup" && # Access the repository folder
 chmod +x ./install.sh && # Permission to run the script
 ./install.sh # Run script
-```
+``` -->
