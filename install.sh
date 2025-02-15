@@ -20,21 +20,6 @@ function check_command
     end
 end
 
-# Muda o shell padrão para Fish
-log_info "Configurando Fish como shell padrão..."
-if not grep -q (which fish) /etc/shells
-    echo (which fish) | sudo tee -a /etc/shells
-end
-chsh -s (which fish)
-
-# Instala Oh My Fish com verificação
-log_info "Instalando Oh My Fish..."
-if not test -d ~/.local/share/omf
-    curl -L https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-else
-    log_info "Oh My Fish já está instalado"
-end
-
 # Instala Starship
 log_info "Instalando Starship..."
 if not type -q starship

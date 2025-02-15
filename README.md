@@ -2,6 +2,8 @@
 
 This is the automation of my fish shell configurations and the technology I use in my daily life as soon as I install Linux.
 
+## Pre Settings
+
 ### Configuring Git (optional)
 
 ```bash
@@ -33,6 +35,12 @@ sudo apt install -y curl git unzip fish
 ```
 
 Command: `fish`
+
+```sh
+chsh -s (which fish)
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+```
+
 
 ## Download repository
 
