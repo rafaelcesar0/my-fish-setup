@@ -1,66 +1,110 @@
 # My Fish Setup
 
-This is the automation of my fish shell configurations and the technology I use in my daily life as soon as I install Linux.
+Automatização das minhas configurações do Fish Shell e das tecnologias que uso diariamente após uma instalação limpa do Linux.
 
-## Pre Settings
+## 📋 Sumário
+- [Pré-requisitos](#pré-requisitos)
+- [Configuração inicial](#configuração-inicial)
+- [Instalação](#instalação)
+- [Recursos instalados](#recursos-instalados)
+- [Solução de problemas](#solução-de-problemas)
 
-### Configuring Git (optional)
+## 🚀 Pré-requisitos
 
+- Sistema operacional Linux (Ubuntu/Debian)
+- Git (para clonar o repositório)
+- Permissões de sudo
+
+## ⚙️ Configuração inicial
+
+### 1. Configurar Git (Opcional)
+Se você ainda não configurou o Git, execute os comandos abaixo:
 ```bash
+# Configurar branch padrão
 git config --global init.defaultBranch main
-git config --global user.name "your_github_username" # Input your github username
-git config --global user.email "your_github_email" # Input your github email
+
+# Configurar suas credenciais
+git config --global user.name "seu_usuario_github"
+git config --global user.email "seu_email_github"
 ```
 
-### Create SSH key (optional)
-
+### 2. Configurar SSH (Opcional)
+Se você preferir usar SSH para o Git:
 ```bash
+# Criar chave SSH
 mkdir -p ~/.ssh
-ssh-keygen -t rsa -C "your_github_email" -N "" -f ~/.ssh/id_rsa # replace "your_github_email"
-# Starting the SSH agent
+ssh-keygen -t rsa -C "seu_email_github" -N "" -f ~/.ssh/id_rsa
+
+# Iniciar o agente SSH
 eval "$(ssh-agent -s)"
-# Printing SSH public key
+
+# Exibir a chave pública (adicione esta chave no GitHub)
 cat ~/.ssh/id_rsa.pub
 ```
 
+## 💻 Instalação
 
-## Installs
-
-<!-- ### [Fish Shell](https://github.com/fish-shell/fish-shell) and [Oh-My-Fish](https://github.com/oh-my-fish/oh-my-fish) -->
-
-```sh
+### 1. Instalar dependências básicas
+```bash
 sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt update
 sudo apt install -y curl git unzip fish
 ```
 
-Command: `fish`
+### 2. Obter o repositório
+Escolha **um** dos métodos abaixo:
 
-```sh
-chsh -s (which fish)
-curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-```
-
-
-## Download repository
-
-### HTTPS
-
+**Via HTTPS:**
 ```bash
 git clone https://github.com/rafaelcesar0/my-fish-setup.git
 ```
-### or SSH
 
+**Via SSH:**
 ```bash
 git clone git@github.com:rafaelcesar0/my-fish-setup.git
 ```
-### or <b><u>[download ZIP](https://github.com/rafaelcesar0/my-fish-setup/archive/refs/heads/main.zip)</u></b>
 
+**Via Download:**
+- [Baixar ZIP](https://github.com/rafaelcesar0/my-fish-setup/archive/refs/heads/main.zip)
 
-## 3. Run the [*install.sh*](https://github.com/rafaelcesar0/my-fish-setup/blob/main/install.sh) script
-
+### 3. Executar o script de instalação
 ```bash
-cd ./my-fish-setup # Access the repository folder
-chmod +x ./install.sh # Permission to run the script
-./install.sh # Run script
+# Acessar a pasta do repositório
+cd my-fish-setup
+
+# Dar permissão de execução ao script
+chmod +x ./install.sh
+
+# Executar o script
+./install.sh
 ```
+
+## 🛠️ Recursos instalados
+
+O script instala e configura automaticamente:
+
+- [Fish Shell](https://fishshell.com/) - Shell moderno e amigável
+- [Oh My Fish](https://github.com/oh-my-fish/oh-my-fish) - Gerenciador de pacotes para Fish
+- [Starship](https://starship.rs/) - Prompt minimalista e rápido
+- [Zoxide](https://github.com/ajeetdsouza/zoxide) - Navegação inteligente entre diretórios
+- [FZF](https://github.com/junegunn/fzf) - Busca fuzzy no terminal
+- [NVM](https://github.com/nvm-sh/nvm) - Gerenciador de versões Node.js
+- [PNPM](https://pnpm.io/) - Gerenciador de pacotes Node.js alternativo
+- [Bun](https://bun.sh/) - Runtime JavaScript all-in-one
+
+## ❗ Solução de problemas
+
+Se encontrar algum problema durante a instalação:
+
+1. Verifique se todas as dependências foram instaladas corretamente
+2. Certifique-se de que está usando o Fish Shell (`fish` no terminal)
+3. Confira se tem permissões de sudo
+4. Em caso de erros, tente executar o script novamente
+
+## 📝 Contribuindo
+
+Sinta-se à vontade para contribuir com este projeto! Abra uma issue ou envie um pull request.
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
