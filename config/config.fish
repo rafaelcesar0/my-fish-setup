@@ -29,8 +29,6 @@ end
 # Configuração do PATH
 set -Ux fish_user_paths $HOME/bin $HOME/.local/bin /usr/local/bin $fish_user_paths
 
-# Função para usar NVM no Fish via Bass
 function nvm
-    bass source $HOME/.nvm/nvm.sh --no-use ';' nvm $argv
-    nvm use default
+  bass source $HOME/.nvm/nvm.sh --no-use ";" nvm $argv
 end
