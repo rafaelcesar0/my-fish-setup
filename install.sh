@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Obtendo o diretório do script
-set SCRIPT_DIR (dirname (realpath (status filename)))
+set SCRIPT_DIR (dirname (realpath (status filename))
 
 # Atualiza pacotes e instala dependências
 sudo apt update && sudo apt install -y curl git unzip
