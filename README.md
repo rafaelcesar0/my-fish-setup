@@ -52,3 +52,26 @@ curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install 
 ```sh
 omf install bass
 ```
+
+## Download repository
+
+### HTTPS
+
+```bash
+git clone https://github.com/rafaelcesar0/my-fish-setup.git
+```
+### or SSH
+
+```bash
+git clone git@github.com:rafaelcesar0/my-fish-setup.git
+```
+### or <b><u>[download ZIP](https://github.com/rafaelcesar0/my-fish-setup/archive/refs/heads/main.zip)</u></b>
+
+
+## 3. Run the [*install.sh*](https://github.com/rafaelcesar0/my-fish-setup/blob/main/install.sh) script
+
+```bash
+cd "$(pwd)/my-fish-setup" && # Access the repository folder
+chmod +x ./install.sh && # Permission to run the script
+./install.sh # Run script
+```
