@@ -1,10 +1,10 @@
 add_newline = false
 
-[nodejs]
-disabled = true
+# [nodejs]
+# disabled = true
 
-[package]
-disabled = true
+# [package]
+# disabled = true
 
-[bun]
-disabled = true
+# [bun]
+# disabled = true

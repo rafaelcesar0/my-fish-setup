@@ -1,37 +1,36 @@
+# Skip greeting message
+set fish_greeting
+
+set SPACEFISH_PROMPT_ADD_NEWLINE false
+
+# Essential tool initialization (load order matters)
 if status is-interactive
-    # Start Tools
+    # Initialize starship prompt
     starship init fish | source
+
+    # Initialize zoxide (smart directory jumper)
     zoxide init fish | source
-    fzf --fish | source
 
-    # Remove fish welcome message
-    set fish_greeting
-
-    # FZF Standard Options
+    # Initialize fuzzy finder with custom options
     set -Ux FZF_DEFAULT_OPTS "
-        --height 40%
-        --layout=reverse
-        --border
-        --info=inline
+        --style full
+        --preview 'batcat -n --color=always {}'
+        --no-clear
     "
-
-    # Useful Aliases
-    alias i='sudo apt install'
-    alias i-get='sudo apt-get install'
-    alias upd='sudo apt update && sudo apt upgrade -y'
-    alias mkdir='mkdir -pv'
-    alias f5='source ~/.config/fish/config.fish'
-    alias cls='clear'
-    alias clean='sudo apt-get autoremove && sudo apt-get autoclean && sudo apt-get clean'
-    alias fishrc='code ~/.config/fish/config.fish'
+    fzf --fish | source
 end
 
-# PATH Configuration
-set -Ux fish_user_paths $HOME/bin $HOME/.local/bin /usr/local/bin $fish_user_paths
-
-# NVM
-function nvm
-  bass source $HOME/.nvm/nvm.sh --no-use ";" nvm $argv
-end
-set -x NVM_DIR ~/.nvm
-nvm use default --silent
+# aliases
+alias i='sudo apt install'
+alias i-get='sudo apt-get install'
+alias upd='sudo apt update && sudo apt upgrade -y'
+alias clean='sudo apt-get autoremove && sudo apt-get autoclean && sudo apt-get clean'
+alias mkdir='mkdir -pv'
+alias cls='clear'
+alias f5='source ~/.config/fish/config.fish'
+alias fishrc='code ~/.config/fish/config.fish'
+alias bat='batcat'
+alias cat='batcat'
+alias eza='eza --icons=always --color=always --long --git --no-filesize --no-time --no-user --no-permissions'
+alias ls='eza'
+alias cd='z'

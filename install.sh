@@ -1,52 +1,47 @@
 #!/usr/bin/env fish
 
-function log
-    set_color green
-    echo "➜ $argv"
-    set_color normal
-end
-
-# Instala Starship
-log "Instalando Starship..."
-curl -sS https://starship.rs/install.sh | sh -s -- -y
-mkdir -p ~/.config
-cp -f "$PWD/config/starship.toml" ~/.config/
-
-# Instala Zoxide
-log "Instalando Zoxide..."
+# zoxide
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 
-# Instala FZF
-log "Instalando FZF..."
+# fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
 
-# Instala plugins do Fish
-log "Instalando plugins do Fish..."
-omf install https://github.com/fabioantunes/fish-nvm
-omf install bass
+# bat
+sudo apt install bat
+mkdir -p ~/.local/bin
+ln -s /usr/bin/batcat ~/.local/bin/bat
 
-# Instala NVM e Node
-log "Instalando NVM e Node..."
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-mkdir -p ~/.config/fish
-cp -f "$PWD/config/config.fish" ~/.config/fish/
+# eza
+sudo apt update
+sudo apt install -y gpg
+sudo mkdir -p /etc/apt/keyrings
+wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+sudo apt update
+sudo apt install -y eza
 
-function nvm
-    bass source $HOME/.nvm/nvm.sh --no-use ';' nvm $argv
-end
+# oh-my-fish
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 
+# nvm
+omf install nvm
+# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+
+# node lts
 nvm install --lts
 nvm use --lts
 nvm alias default 'lts/*'
 npm update -g npm
 
-# Instala PNPM
-log "Instalando PNPM..."
+# pnpm
 curl -fsSL https://get.pnpm.io/install.sh | sh -
 
-# Instala Bun
-log "Instalando Bun..."
+# bun
 curl -fsSL https://bun.sh/install | bash
 
-log "✓ Configuração concluída! Por favor, reinicie o terminal."
+# starship
+curl -sS https://starship.rs/install.sh | sh -s -- -y
+mkdir -p ~/.config
+cp -f "$PWD/config/starship.toml" ~/.config/
