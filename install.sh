@@ -25,23 +25,23 @@ sudo apt install -y eza
 # oh-my-fish
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 
+# starship
+curl -sS https://starship.rs/install.sh | sh -s -- -y
+mkdir -p ~/.config
+
+# copy config files
+cp -f "$PWD/config/starship.toml" ~/.config/
+cp -f "$PWD/config/config.fish" ~/.config/fish/config.fish
+
 # nvm
-omf install nvm
 # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+omf install nvm
 
 # node lts
-nvm install --lts
-nvm use --lts
-nvm alias default 'lts/*'
-npm update -g npm
+fish -c 'nvm install --lts; nvm use --lts; nvm alias default "lts/*"; npm update -g npm'
 
 # pnpm
 curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 # bun
 curl -fsSL https://bun.sh/install | bash
-
-# starship
-curl -sS https://starship.rs/install.sh | sh -s -- -y
-mkdir -p ~/.config
-cp -f "$PWD/config/starship.toml" ~/.config/
