@@ -31,6 +31,17 @@ alias f5='source ~/.config/fish/config.fish'
 alias fishrc='code ~/.config/fish/config.fish'
 alias bat='batcat'
 alias cat='batcat'
-alias eza='eza --icons=always --color=always --long --git --no-filesize --no-time --no-user --no-permissions'
+alias eza='eza --color --long --git --no-filesize --icons --no-time --no-user --no-permissions'
 alias ls='eza'
 alias cd='z'
+
+# pnpm
+set -gx PNPM_HOME "/home/rafael/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
