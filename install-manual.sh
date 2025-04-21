@@ -1,14 +1,7 @@
 #!/usr/bin/env fish
 
-# zoxide
-curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
-
-# fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install --all
-
-# bat
-sudo apt install bat
+# bat and zoxide and  fzf
+sudo apt install bat zoxide fzf -y
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 
@@ -34,11 +27,11 @@ cp -f "$PWD/config/starship.toml" ~/.config/
 cp -f "$PWD/config/config.fish" ~/.config/fish/config.fish
 
 # nvm
-# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
 omf install nvm
 
 # node lts
-fish -c 'nvm install --lts; nvm use --lts; nvm alias default "lts/*"; npm update -g npm'
+nvm install --lts; nvm use --lts; nvm alias default "lts/*"; npm update -g npm
 
 # pnpm
 curl -fsSL https://get.pnpm.io/install.sh | sh -

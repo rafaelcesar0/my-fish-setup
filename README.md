@@ -48,10 +48,10 @@ Baixe o repositório via `git clone` ou [`Download ZIP`](https://github.com/rafa
 cd my-fish-setup
 
 # Dar permissão de execução ao script
-chmod +x ./install.sh
+chmod +x ./install.fish
 
 # Executar o script
-./install.sh
+./install.fish
 ```
 
 ## 🛠️ Recursos instalados
