@@ -38,11 +38,15 @@ eval "$(ssh-agent -s)"
 # Exibir a chave pública (adicione esta chave no GitHub)
 cat ~/.ssh/id_rsa.pub
 ```
-
-## ⬇️ Download do repositório
-Baixe o repositório via `git clone` ou [`Download ZIP`](https://github.com/rafaelcesar0/my-fish-setup/archive/refs/heads/main.zip)
+## ✍️ Instale manualmente
+[install-manual.sh](https://github.com/rafaelcesar0/my-fish-setup/blob/main/install-manual.sh)
 
 ## 📜 Script de instalação
+
+### ⬇️ Download do repositório
+
+Baixe o repositório via `git clone` ou [`Download ZIP`](https://github.com/rafaelcesar0/my-fish-setup/archive/refs/heads/main.zip) e execute:
+
 ```bash
 # Acessar a pasta do repositório
 cd my-fish-setup
