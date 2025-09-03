@@ -51,13 +51,16 @@ git config --global user.email "your_github_email"
 ## Configure `SSH` (optional)
 
 ```sh
-# Create SSH key
+# Create SSH key (Ed25519 - recommended for 2025)
 mkdir -p ~/.ssh
-ssh-keygen -t rsa -C "your_github_email" -N "" -f ~/.ssh/id_rsa
+ssh-keygen -t ed25519 -C "your_github_email" -f ~/.ssh/id_main
 
 # Start SSH agent
 eval "$(ssh-agent -s)"
 
+# Add key to SSH agent
+ssh-add ~/.ssh/id_main
+
 # Display public key (add this key to GitHub)
-cat ~/.ssh/id_rsa.pub
+cat ~/.ssh/id_main.pub
 ```
