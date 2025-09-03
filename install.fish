@@ -6,15 +6,22 @@
 set SCRIPT_DIR (dirname (realpath (status filename)))
 
 # Lista de tecnologias disponíveis
-set -l TOOLS "core-tools" "eza" "oh-my-fish" "starship" "nvm" "pnpm" "bun" "docker" "uv"
-set -l TOOL_NAMES "Core Tools (bat, zoxide, fzf)" "eza" "Oh My Fish" "Starship" "NVM" "pnpm" "bun" "Docker Engine" "UV (Python)"
-set -l CONFIG_MODULES "config-base.fish" "config-fzf.fish" "config-starship.fish" "config-zoxide.fish" "config-nvm.fish" "config-pnpm.fish" "config-bun.fish" "config-docker.fish" "config-uv.fish"
+set -g TOOLS "core-tools" "eza" "oh-my-fish" "starship" "nvm" "pnpm" "bun" "docker" "uv"
+set -g TOOL_NAMES "Core Tools (bat, zoxide, fzf)" "eza" "Oh My Fish" "Starship" "NVM" "pnpm" "bun" "Docker Engine" "UV (Python)"
+set -g CONFIG_MODULES "config-base.fish" "config-fzf.fish" "config-starship.fish" "config-zoxide.fish" "config-nvm.fish" "config-pnpm.fish" "config-bun.fish" "config-docker.fish" "config-uv.fish"
 
 # Cores para output
 set -l GREEN '\033[0;32m'
 set -l YELLOW '\033[1;33m'
 set -l RED '\033[0;31m'
 set -l NC '\033[0m' # No Color
+
+# Handler para Ctrl+C
+function handle_interrupt --on-signal SIGINT
+    echo
+    echo -e "$YELLOW✋ Instalação cancelada pelo usuário.$NC"
+    exit 130
+end
 
 function show_header
     echo
@@ -30,6 +37,8 @@ function show_menu
     echo "2) Instalação personalizada (escolher ferramentas)"
     echo "3) Listar ferramentas disponíveis"
     echo "4) Sair"
+    echo
+    echo -e "$YELLOW💡 Pressione Ctrl+C ou digite 'q' para sair a qualquer momento$NC"
     echo
 end
 
@@ -71,8 +80,14 @@ function custom_installation
         echo "$i) $TOOL_NAMES[$i]"
     end
     echo
-    echo -n "Digite os números (ex: 1 3 5): "
+    echo -n "Digite os números (ex: 1 3 5) ou 'q' para cancelar: "
     read -l choices
+    
+    # Verificar se o usuário quer cancelar
+    if test "$choices" = "q" -o "$choices" = "Q"
+        echo -e "$YELLOW✋ Instalação cancelada.$NC"
+        return 1
+    end
     
     set -l selected_tools
     for choice in $choices
@@ -204,11 +219,11 @@ function main
                 end
             case "3"
                 list_tools
-            case "4"
+            case "4" "q" "Q"
                 echo "Saindo..."
                 exit 0
             case "*"
-                echo -e "$RED✗ Opção inválida. Digite 1, 2, 3 ou 4.$NC"
+                echo -e "$RED✗ Opção inválida. Digite 1, 2, 3, 4 ou 'q' para sair.$NC"
                 echo
         end
     end
