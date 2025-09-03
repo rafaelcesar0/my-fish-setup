@@ -81,18 +81,33 @@ function custom_installation
     end
     echo
     echo -n "Digite os números (ex: 1 3 5) ou 'q' para cancelar: "
-    read -l choices
+    read -l user_input
     
     # Verificar se o usuário quer cancelar
-    if test "$choices" = "q" -o "$choices" = "Q"
+    if test "$user_input" = "q" -o "$user_input" = "Q"
         echo -e "$YELLOW✋ Instalação cancelada.$NC"
         return 1
     end
     
+    # Dividir a entrada em números individuais
+    set -l choices (string split " " $user_input)
+    
     set -l selected_tools
     for choice in $choices
-        if test $choice -ge 1 -a $choice -le (count $TOOLS)
-            set -a selected_tools $TOOLS[$choice]
+        # Pular strings vazias
+        if test -z "$choice"
+            continue
+        end
+        
+        # Verificar se é um número válido
+        if string match -qr '^\d+$' $choice
+            if test $choice -ge 1 -a $choice -le (count $TOOLS)
+                set -a selected_tools $TOOLS[$choice]
+            else
+                echo -e "$RED✗ Número inválido: $choice (deve estar entre 1 e "(count $TOOLS)")$NC"
+            end
+        else
+            echo -e "$RED✗ '$choice' não é um número válido$NC"
         end
     end
     
