@@ -30,7 +30,6 @@ sudo apt install -y eza
 
 ```sh
 curl -sS https://starship.rs/install.sh | sh
-starship init fish | source
 ```
 Configure starship.toml (optional):
 
@@ -46,7 +45,7 @@ Install and integrate it with Fish:
 
 ```sh
 # Install nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 
 # Install Oh My Fish plugin for nvm integration
 omf install nvm
