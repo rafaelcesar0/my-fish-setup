@@ -1,73 +1,63 @@
-# My *`fish-shell`* Setup
+# My _`fish-shell`_ Setup
 
-Meu setup para terminal **`Ubuntu/Debian`**.
+My ***Fish*** shell setup for ***Ubuntu*** and ***Debian*** includes:
 
-## 💻 Dependências básicas
+[`oh-my-fish`](https://github.com/oh-my-fish/oh-my-fish)
+[`starship`](https://starship.rs)
+[`zoxide`](https://github.com/ajeetdsouza/zoxide)
+[`fzf`](https://github.com/junegunn/fzf)
+[`eza`](https://github.com/eza-community/eza)
+[`bat`](https://github.com/sharkdp/bat)
+[`nvm`](https://github.com/nvm-sh/nvm)
+[`pnpm`](https://pnpm.io)
+[`bun`](https://bun.sh)
+[`uv`](https://docs.astral.sh/uv)
+[`docker`](https://docs.docker.com/engine)
 
-Instalando e configurando `curl` `git` `unzip` + [`fish-shell`](https://github.com/fish-shell/fish-shell) como default
 
-```bash
+## Install Basic Tools `curl` `git` [`fish-shell`](https://github.com/fish-shell/fish-shell) [`oh-my-fish`](https://github.com/oh-my-fish/oh-my-fish)
+
+```sh
+# curl + git
+sudo apt install -y curl git
+
+# fish-shell
 sudo apt-add-repository ppa:fish-shell/release-4
 sudo apt update
-sudo apt install -y curl git unzip fish
+sudo apt install -y fish
 
+# Set fish as default shell
 chsh -s $(which fish)
 ```
 
-Config Git (opcional)
+```sh
+# oh-my-fish
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+```
 
-```bash
-# Configurar branch padrão
+### For detailed installation instructions, see [fish-setup-guide.md](https://github.com/rafaelcesar0/my-fish-setup/blob/main/docs/fish-setup-guide.md)
+
+## Configure `git` (optional)
+
+```sh
+# Set default branch
 git config --global init.defaultBranch main
 
-# Configurar suas credenciais
-git config --global user.name "seu_usuario_github"
-git config --global user.email "seu_email_github"
+# Set your credentials
+git config --global user.name "your_github_username"
+git config --global user.email "your_github_email"
 ```
 
-Config SSH (opcional)
+## Configure `SSH` (optional)
 
-```bash
-# Criar chave SSH
+```sh
+# Create SSH key
 mkdir -p ~/.ssh
-ssh-keygen -t rsa -C "seu_email_github" -N "" -f ~/.ssh/id_rsa
+ssh-keygen -t rsa -C "your_github_email" -N "" -f ~/.ssh/id_rsa
 
-# Iniciar o agente SSH
+# Start SSH agent
 eval "$(ssh-agent -s)"
 
-# Exibir a chave pública (adicione esta chave no GitHub)
+# Display public key (add this key to GitHub)
 cat ~/.ssh/id_rsa.pub
 ```
-## ✍️ Instale manualmente
-[install-manual.sh](https://github.com/rafaelcesar0/my-fish-setup/blob/main/install-manual.sh)
-
-## 📜 Script de instalação
-
-### ⬇️ Download do repositório
-
-Baixe o repositório via `git clone` ou [`Download ZIP`](https://github.com/rafaelcesar0/my-fish-setup/archive/refs/heads/main.zip) e execute:
-
-```bash
-# Acessar a pasta do repositório
-cd my-fish-setup
-
-# Dar permissão de execução ao script
-chmod +x ./install.fish
-
-# Executar o script
-./install.fish
-```
-
-## 🛠️ Recursos instalados
-
-O script instala e configura automaticamente:
-
-- [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
-- [starship](https://starship.rs/)
-- [zoxide](https://github.com/ajeetdsouza/zoxide)
-- [fzf](https://github.com/junegunn/fzf)
-- [eza](https://github.com/eza-community/eza)
-- [bat](https://github.com/sharkdp/bat)
-- [nvm](https://github.com/nvm-sh/nvm)
-- [pnpm](https://pnpm.io/)
-- [bun](https://bun.sh/)
