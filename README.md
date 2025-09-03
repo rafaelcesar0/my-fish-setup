@@ -1,6 +1,6 @@
 # My *`fish-shell`* Setup
 
-Meu setup para terminal **`Ubuntu/Debian`**.
+Meu setup **modular** para terminal **`Ubuntu/Debian`** com instalação personalizada.
 
 ## 💻 Dependências básicas
 
@@ -38,10 +38,7 @@ eval "$(ssh-agent -s)"
 # Exibir a chave pública (adicione esta chave no GitHub)
 cat ~/.ssh/id_rsa.pub
 ```
-## ✍️ Instale manualmente
-[install-manual.sh](https://github.com/rafaelcesar0/my-fish-setup/blob/main/install-manual.sh)
-
-## 📜 Script de instalação
+## 📜 Instalação Modular
 
 ### ⬇️ Download do repositório
 
@@ -54,9 +51,70 @@ cd my-fish-setup
 # Dar permissão de execução ao script
 chmod +x ./install.fish
 
-# Executar o script
+# Executar o instalador interativo
 ./install.fish
 ```
+
+### 🎯 Opções de Instalação
+
+O novo sistema oferece **3 modos** de instalação:
+
+1. **📦 Instalação Completa** - Instala todas as ferramentas
+2. **🎨 Instalação Personalizada** - Escolha quais ferramentas instalar
+3. **📋 Listar Ferramentas** - Veja o que está disponível
+
+### ⚡ Instalação Manual (Legado)
+
+Para usar o método anterior (instala tudo de uma vez):
+
+```bash
+# Usar o instalador legado
+chmod +x ./install-legacy.fish
+./install-legacy.fish
+```
+
+Ou instalação ultra-rápida:
+```bash
+chmod +x ./install-manual.sh
+./install-manual.sh
+```
+
+## 🏗️ Arquitetura Modular
+
+### 📁 Estrutura do Projeto
+
+```
+my-fish-setup/
+├── install.fish              # 🎛️ Orquestrador principal (interativo)
+├── install-legacy.fish       # 📦 Instalador antigo (completo)
+├── install-manual.sh         # ⚡ Instalação rápida
+├── scripts/                  # 🔧 Scripts individuais
+│   ├── install-core-tools.fish  # bat, zoxide, fzf
+│   ├── install-eza.fish         # eza (ls moderno)
+│   ├── install-oh-my-fish.fish  # framework + plugins
+│   ├── install-starship.fish    # prompt personalizado
+│   ├── install-nvm.fish         # gerenciador Node.js
+│   ├── install-pnpm.fish        # package manager
+│   ├── install-bun.fish         # runtime JS
+│   ├── install-docker.fish      # Docker Engine
+│   └── install-uv.fish          # Python package manager
+└── config/                   # ⚙️ Módulos de configuração
+    ├── config-base.fish         # aliases e configs básicas
+    ├── config-starship.fish     # inicialização starship
+    ├── config-zoxide.fish       # inicialização zoxide
+    ├── config-fzf.fish          # inicialização fzf
+    ├── config-pnpm.fish         # PATH pnpm
+    ├── config-bun.fish          # PATH bun
+    ├── config-uv.fish           # PATH UV (Python)
+    └── starship.toml            # tema starship
+```
+
+### ✨ Como Funciona
+
+1. **`install.fish`** → Menu interativo para escolha
+2. **Scripts individuais** → Instalam tecnologia específica  
+3. **Módulos de config** → Combinados no `config.fish` final
+4. **Resultado** → Setup personalizado baseado na seleção
 
 ## 🛠️ Recursos instalados
 
@@ -71,3 +129,5 @@ O script instala e configura automaticamente:
 - [nvm](https://github.com/nvm-sh/nvm)
 - [pnpm](https://pnpm.io/)
 - [bun](https://bun.sh/)
+- [Docker Engine](https://docs.docker.com/engine/)
+- [UV](https://docs.astral.sh/uv/) (Python package manager)
