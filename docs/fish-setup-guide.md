@@ -120,8 +120,7 @@ alias cls='clear'
 alias f5='source ~/.config/fish/config.fish'
 alias fishrc='code ~/.config/fish/config.fish'
 alias bat='batcat'
-alias eza='eza --color --long --git --no-filesize --icons --no-time --no-user --no-permissions'
-alias ls='eza'
+alias ls='eza --color --long --git --no-filesize --icons --no-time --no-user --no-permissions'
 alias cd='z'
 
 # pnpm
