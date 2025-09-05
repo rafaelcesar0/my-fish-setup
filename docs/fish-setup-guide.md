@@ -70,6 +70,15 @@ sudo apt install -y unzip
 curl -fsSL https://bun.sh/install | bash
 ```
 
+### Bonus: AI Development Tools
+
+Install popular AI CLI tools for enhanced development workflow:
+
+```sh
+# claude-code + gemini + codex
+bun i -g @anthropic-ai/claude-code @google/gemini-cli @openai/codex
+```
+
 ## Install [`uv`](https://docs.astral.sh/uv/)
 
 ```sh
