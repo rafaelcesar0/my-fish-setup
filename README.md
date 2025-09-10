@@ -1,23 +1,28 @@
-# My _`fish-shell`_ Setup
+# My Fish Shell Setup
 
-My ***Fish*** shell setup for ***Ubuntu*** and ***Debian*** includes:
+Complete Fish shell setup for **Ubuntu** and **Debian** with modern CLI tools.
 
-[`oh-my-fish`](https://github.com/oh-my-fish/oh-my-fish)
-[`starship`](https://starship.rs)
-[`zoxide`](https://github.com/ajeetdsouza/zoxide)
-[`fzf`](https://github.com/junegunn/fzf)
-[`eza`](https://github.com/eza-community/eza)
-[`bat`](https://github.com/sharkdp/bat)
-[`nvm`](https://github.com/nvm-sh/nvm)
-[`pnpm`](https://pnpm.io)
-[`bun`](https://bun.sh)
-[`uv`](https://docs.astral.sh/uv)
-[`docker`](https://docs.docker.com/engine)
+## Included Tools
 
+- [`oh-my-fish`](https://github.com/oh-my-fish/oh-my-fish) - Fish shell framework
+- [`starship`](https://starship.rs) - Cross-shell prompt
+- [`zoxide`](https://github.com/ajeetdsouza/zoxide) - Smart directory jumper
+- [`fzf`](https://github.com/junegunn/fzf) - Fuzzy finder
+- [`eza`](https://github.com/eza-community/eza) - Modern ls replacement
+- [`bat`](https://github.com/sharkdp/bat) - Cat with syntax highlighting
+- [`nvm`](https://github.com/nvm-sh/nvm) - Node version manager
+- [`pnpm`](https://pnpm.io) - Fast package manager
+- [`bun`](https://bun.sh) - JavaScript runtime
+- [`uv`](https://docs.astral.sh/uv) - Python package installer
+- [`docker`](https://docs.docker.com/engine) - Container platform
 
-## Install Basic Tools `curl` `git` [`fish-shell`](https://github.com/fish-shell/fish-shell) [`oh-my-fish`](https://github.com/oh-my-fish/oh-my-fish)
+## Quick Start
+
+### Install Basic Tools
 
 ```sh
+sudo apt update && sudo apt upgrade -y
+
 # curl + git
 sudo apt install -y curl git
 
@@ -35,9 +40,13 @@ chsh -s $(which fish)
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 ```
 
-### For detailed installation instructions, see [fish-setup-guide.md](https://github.com/rafaelcesar0/my-fish-setup/blob/main/docs/fish-setup-guide.md)
+### Complete Installation Guide
 
-## Configure `git` (optional)
+For detailed installation instructions, see [fish-setup-guide.md](docs/fish-setup-guide.md)
+
+## Optional Configuration
+
+### Git Setup
 
 ```sh
 # Set default branch
@@ -48,19 +57,27 @@ git config --global user.name "your_github_username"
 git config --global user.email "your_github_email"
 ```
 
-## Configure `SSH` (optional)
+### SSH Setup
+
+Create SSH key (Ed25519 - recommended for 2025):
 
 ```sh
-# Create SSH key (Ed25519 - recommended for 2025)
 mkdir -p ~/.ssh
-ssh-keygen -t ed25519 -C "your_github_email" -f ~/.ssh/id_main
+ssh-keygen -t ed25519 -C "your_github_email" -f ~/.ssh/id_ed25519
+```
 
-# Start SSH agent
-eval "$(ssh-agent -s)"
+Start SSH agent:
+
+```sh
+# Start SSH agent (works in both Fish and Bash)
+ssh-agent -c | source || eval "$(ssh-agent -s)"
 
 # Add key to SSH agent
-ssh-add ~/.ssh/id_main
+ssh-add ~/.ssh/id_ed25519
+```
 
-# Display public key (add this key to GitHub)
-cat ~/.ssh/id_main.pub
+Display public key (add this key to GitHub):
+
+```sh
+cat ~/.ssh/id_ed25519.pub
 ```

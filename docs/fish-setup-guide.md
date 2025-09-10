@@ -2,14 +2,21 @@
 
 This comprehensive guide provides step-by-step instructions for setting up a complete Fish shell development environment with modern tools and utilities.
 
-## Install [`bat`](https://github.com/sharkdp/bat) [`zoxide`](https://github.com/ajeetdsouza/zoxide) [`fzf`](https://github.com/junegunn/fzf)
+## Install [`bat`](https://github.com/sharkdp/bat) [`zoxide`](https://github.com/ajeetdsouza/zoxide)
 
 ```sh
-sudo apt install bat zoxide fzf -y
+sudo apt install bat zoxide -y
 
 # Create symlink for bat command
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
+```
+
+## Install [`fzf`](https://github.com/junegunn/fzf)
+
+```sh
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 ```
 
 ## Install [`eza`](https://github.com/eza-community/eza)
@@ -31,12 +38,17 @@ sudo apt install -y eza
 ```sh
 curl -sS https://starship.rs/install.sh | sh
 ```
+
+```sh
+starship init fish | source
+```
+
 Configure starship.toml (optional):
 
 ```sh
-cat > ~/.config/starship.toml << 'EOF'
-add_newline = false
-EOF
+begin
+    echo 'add_newline = false'
+end > ~/.config/starship.toml
 ```
 
 ## Install [`nvm`](https://github.com/nvm-sh/nvm)
@@ -83,9 +95,12 @@ bun i -g @anthropic-ai/claude-code @google/gemini-cli @openai/codex
 
 ```sh
 curl -LsSf https://astral.sh/uv/install.sh | sh
+
+uv python install --default
 ```
 
 ## Install Docker Engine
+
 Follow the official installation guide for [`Ubuntu`](https://docs.docker.com/engine/install/ubuntu/) or [`Debian`](https://docs.docker.com/engine/install/debian/).
 
 ## Configure Fish Shell
