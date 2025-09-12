@@ -121,17 +121,21 @@ set SPACEFISH_PROMPT_ADD_NEWLINE false
 
 # Essential tool initialization (load order matters)
 if status is-interactive
-    # starship
-    starship init fish | source
+  # starship
+  starship init fish | source
 
-    # zoxide
-    zoxide init fish | source
+  # zoxide
+  zoxide init fish | source
+  function cd
+    mkdir -p $argv[1]
+    z $argv[1]
+  end
 
-    # fzf
-    set -Ux FZF_DEFAULT_OPTS "--style full --no-clear"
-    set -Ux FZF_CTRL_T_OPTS "--preview 'batcat -n --color=always {}'"
-    set -Ux FZF_CTRL_R_OPTS ""
-    fzf --fish | source
+  # fzf
+  set -Ux FZF_DEFAULT_OPTS "--style full --no-clear"
+  set -Ux FZF_CTRL_T_OPTS "--preview 'batcat -n --color=always {}'"
+  set -Ux FZF_CTRL_R_OPTS ""
+  fzf --fish | source
 end
 
 # aliases
@@ -145,7 +149,6 @@ alias f5='source ~/.config/fish/config.fish'
 alias fishrc='code ~/.config/fish/config.fish'
 alias bat='batcat'
 alias ls='eza --color --long --git --no-filesize --icons --no-time --no-user --no-permissions'
-alias cd='z'
 
 # pnpm
 set -gx PNPM_HOME "$HOME/.local/share/pnpm"
